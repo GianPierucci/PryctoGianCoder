@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "node": "^20.2.0"
+  }
+}
