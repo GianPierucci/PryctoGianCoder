@@ -64,14 +64,14 @@ class ProductManager {
         }
     }
 
-    async updateProduct(id) {
+    async updateProduct(id,data) {
         try {
-            let data = await utils.readFile(this.path)
-            this.products = data?.length > 0 ? products : []
+            let products = await utils.readFile(this.path)
+            this.products = products?.length > 0 ? products : []
 
             let productIndex = this.products.findIndex((dato) => dato.id == id)
             if (productIndex !== -1) {
-                this.products[productIndex] = { ...products[productIndex], ...data }
+                this.products[productIndex] = { ...products[productIndex], ...data  }
                 await utils.writeFile(this.path, products)
                 return products[productIndex]
             } else {
@@ -101,11 +101,8 @@ class ProductManager {
 }
 
 const productManager = new ProductManager("./products.json")
-
-/*  await productManager.addProducts("BMW", "Sport car", 20000, "image/bmw", 5)
-await productManager.addProducts("Mercedes Benz", "Sport car", 22000, "image/mb", 4)
-await productManager.addProducts("Audi", "Sport car", 22000, "image/mb", 2)
-await productManager.getProducts().then((data) => console.log(data)) */
-
+/* 
+await productManager.getProductById(1).then((data)=>console.log(data))
+console.log("hola"); */
 export default productManager
 //await productManager.deleteProducts()
